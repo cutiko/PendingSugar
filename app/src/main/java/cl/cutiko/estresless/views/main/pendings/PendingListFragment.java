@@ -1,4 +1,4 @@
-package cl.cutiko.estresless.views.main;
+package cl.cutiko.estresless.views.main.pendings;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ import cl.cutiko.estresless.views.details.DetailsActivity;
  */
 public class PendingListFragment extends Fragment implements PendingClickListener {
 
-    public static final String PENDING = "cl.cutiko.estresless.views.main.PendingListFragment.PENDING";
+    public static final String PENDING = "cl.cutiko.estresless.views.main.pendings.PendingListFragment.PENDING";
     private PendingsAdapter adapter;
 
     public PendingListFragment() {
@@ -65,6 +65,10 @@ public class PendingListFragment extends Fragment implements PendingClickListene
 
     public void addPending(Pending pending) {
         adapter.addPending(pending);
+    }
+
+    public void updateList(String name) {
+        adapter.updateByName(name);
     }
 
     @Override

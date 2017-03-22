@@ -4,7 +4,7 @@
     android:id="@+id/reloadSr"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cl.cutiko.estresless.views.main.PendingListFragment"
+    tools:context="cl.cutiko.estresless.views.main.pendings.PendingListFragment"
     tools:showIn="@layout/activity_main">
 
     <android.support.v7.widget.RecyclerView

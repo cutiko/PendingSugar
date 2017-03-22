@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,8 +14,10 @@ import android.widget.Toast;
 
 import cl.cutiko.estresless.R;
 import cl.cutiko.estresless.models.Pending;
+import cl.cutiko.estresless.views.main.pendings.PendingListFragment;
+import cl.cutiko.estresless.views.main.search.SearchListener;
 
-public class MainActivity extends AppCompatActivity implements PendingCallback {
+public class MainActivity extends AppCompatActivity implements PendingCallback, SearchListener {
 
     private PendingListFragment pendingListFragment;
 
@@ -55,28 +55,6 @@ public class MainActivity extends AppCompatActivity implements PendingCallback {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void created(Pending pending) {
         pendingListFragment.addPending(pending);
     }
@@ -84,5 +62,10 @@ public class MainActivity extends AppCompatActivity implements PendingCallback {
     @Override
     public void noName() {
         Toast.makeText(this, "Un nombre por favor", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void searched(String name) {
+        pendingListFragment.updateList(name);
     }
 }
